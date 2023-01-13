@@ -1,4 +1,5 @@
 import 'package:engine_simulator_launcher/counter/counter.dart';
+import 'package:engine_simulator_launcher/home/view/home_page.dart';
 import 'package:engine_simulator_launcher/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -9,14 +10,14 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
+        appBarTheme: const AppBarTheme(color: Colors.grey),
         colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
+          accentColor: Colors.grey,
         ),
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: const HomePage(),
     );
   }
 }
