@@ -23,9 +23,10 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [EngineCard()],
+        children: [
+          const Expanded(child: EngineCard()),
+          const Expanded(child: ThemeCard()),
+        ],
       ),
     );
   }
@@ -38,7 +39,7 @@ class EngineCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -58,6 +59,33 @@ class EngineCard extends StatelessWidget {
     );
   }
 }
+class ThemeCard extends StatelessWidget {
+  const ThemeCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              'Actual Theme',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            const Icon(
+              Icons.style,
+              color: Colors.grey,
+              size: 128,
+            ),
+            const Text('Default Theme'),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 
 class HomeBottomBar extends StatelessWidget {
@@ -71,9 +99,14 @@ class HomeBottomBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Expanded(
-            child: SizedBox(height: 10),
+          Expanded(
+            child: ElevatedButton.icon(
+              onPressed: () {},
+              icon: const Icon(Icons.settings),
+              label: const Text('Settings'),
+            ),
           ),
+          const SizedBox(width: 8),
           Expanded(
             child: ElevatedButton.icon(
               onPressed: () {},
