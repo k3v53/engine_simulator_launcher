@@ -5,9 +5,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: HomeView(),
-      bottomNavigationBar: HomeBottomBar(),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Engine Simulator Launcher'),
+      ),
+      body: const HomeView(),
+      bottomNavigationBar: const HomeBottomBar(),
     );
   }
 }
@@ -17,20 +21,12 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        const HomeSliverAppBar(),
-        SliverPadding(
-          padding: const EdgeInsets.all(8),
-          sliver: SliverGrid.extent(
-            maxCrossAxisExtent: 400,
-            childAspectRatio: .5,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-            children: const [EngineCard()],
-          ),
-        )
-      ],
+    return SafeArea(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: const [EngineCard()],
+      ),
     );
   }
 }
@@ -41,62 +37,28 @@ class EngineCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            'Actual Engine',
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          const Icon(
-            Icons.speed,
-            color: Colors.grey,
-            size: 128,
-          ),
-          const Text('Ferrari l386'),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              'Actual Engine',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            const Icon(
+              Icons.speed,
+              color: Colors.grey,
+              size: 128,
+            ),
+            const Text('Ferrari l386'),
+          ],
+        ),
       ),
     );
   }
 }
 
-class HomeSliverAppBar extends StatelessWidget {
-  const HomeSliverAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const SliverAppBar(
-      centerTitle: true,
-      title: Text('Engine Simulator Launcher'),
-      // expandedHeight: 100,
-      flexibleSpace: FlexibleSpaceBar(
-        centerTitle: true,
-        // background: Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //   crossAxisAlignment: CrossAxisAlignment.end,
-        //   children: [
-        //     ElevatedButton(
-        //       onPressed: () {},
-        //       child: const Text('A cool button'),
-        //     ),
-        //     ElevatedButton(
-        //       onPressed: () {},
-        //       child: const Text('A cool button'),
-        //     ),
-        //     ElevatedButton(
-        //       onPressed: () {},
-        //       child: const Text('A cool button'),
-        //     ),
-        //     ElevatedButton(
-        //       onPressed: () {},
-        //       child: const Text('A cool button'),
-        //     ),
-        //   ],
-        // ),
-      ),
-    );
-  }
-}
 
 class HomeBottomBar extends StatelessWidget {
   const HomeBottomBar({super.key});
@@ -119,6 +81,7 @@ class HomeBottomBar extends StatelessWidget {
               label: const Text('Start simulator'),
             ),
           ),
+          const SizedBox(width: 8),
           Expanded(
             child: ElevatedButton.icon(
               onPressed: () {},
