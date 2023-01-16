@@ -1,7 +1,5 @@
-/// {@template engine_simulator_data}
-/// A Very Good Project created by Very Good CLI.
-/// {@endtemplate}
+/// Exposes a simplified way to manipulate engine simulator data
 class EngineSimulatorData {
-  /// {@macro engine_simulator_data}
+  /// TODO: Pending implementation
   const EngineSimulatorData();
 }
