@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 /// Exposes a simple way to manipulate an engine.mr file
@@ -10,7 +9,7 @@ class Engine {
   File file;
 
   /// The contents of this engine file
-  String? get contents => file.readAsStringSync();
+  String get contents => file.readAsStringSync();
 
   /// Return the name of this engine
   String? get name {

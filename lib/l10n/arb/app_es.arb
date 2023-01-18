@@ -1,7 +1,18 @@
 {
-    "@@locale": "es",
-    "counterAppBarTitle": "Contador",
-    "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
-    }
+"@@locale": "es",
+"actualEngine": "Motor actual",
+"actualTheme": "Tema actual",
+"defaultTheme": "Tema predeterminado",
+"didNotFindLauncherBinary": "No encontramos el archivo ejecutable del lanzador, por favor vaya a la página de configuración para descargarlo o establecerlo manualmente.",
+"engineSimulatorLauncher": "Launcher de Engine Simulator",
+"engineSimulatorPath": "Ruta de Engine Simulator",
+"githubRepository": "Repositorio de Github",
+"openFolder": "Abrir carpeta",
+"openSettingsPage": "Abrir página de configuración",
+"setEngineSimulatorFolder": "Establecer carpeta de Engine Simulator",
+"settings": "Configuración",
+"startSimulator": "Iniciar simulador",
+"stopSimulator": "Detener simulador",
+"useDefault": "Usar predeterminado",
+"useDefaultPath": "Usar ruta predeterminada"
 }

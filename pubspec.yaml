@@ -9,6 +9,10 @@ environment:
 
 dependencies:
   bloc: ^8.1.0
+  engine_simulator_data:
+    path: local_packages/engine_simulator_data
+  settings_repository:
+      path: local_packages/settings_repository
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
@@ -17,6 +21,9 @@ dependencies:
   freezed_annotation: ^2.2.0
   intl: ^0.17.0
   json_annotation: ^4.7.0
+  shared_preferences: ^2.0.16
+  file_picker: ^5.2.5
+  url_launcher: ^6.1.7
 
 dev_dependencies:
   bloc_test: ^9.1.0
