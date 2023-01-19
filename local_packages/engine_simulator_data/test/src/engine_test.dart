@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-import 'dart:developer' show log;
 import 'dart:io';
 
 import 'package:engine_simulator_data/engine_simulator_data.dart';

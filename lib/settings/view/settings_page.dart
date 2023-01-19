@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:engine_simulator_launcher/l10n/l10n.dart';
 import 'package:engine_simulator_launcher/settings/cubit/settings_cubit.dart';
