@@ -1,6 +1,0 @@
-import "engine_sim.mr"
-import "test/assets/theme/default.mr"
-import "test/assets/engine/chev_truck_454.mr"
-
-main()
-set_engine(null)
