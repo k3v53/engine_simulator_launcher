@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
           title: Text(l10n.engineSimulatorLauncher),
           actions: [
             IconButton(
-              onPressed: () => launchUrlString(GITHUB_REPO),
+              onPressed: () => launchUrlString(GITHUB_REPO_URL),
               icon: const Icon(Icons.link),
               tooltip: l10n.githubRepository,
             ),
