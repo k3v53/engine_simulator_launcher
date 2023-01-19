@@ -7,6 +7,7 @@ import 'package:engine_simulator_data/src/main_launcher.dart';
 import 'package:test/test.dart';
 
 import '../assets/assets.dart';
+import 'engine_test.dart';
 
 void main() {
   group('Main Launcher', () {

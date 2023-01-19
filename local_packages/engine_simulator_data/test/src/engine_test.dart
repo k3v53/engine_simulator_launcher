@@ -47,6 +47,11 @@ final testEngines = [
     expectedName: 'Honda B18C5 [VTEC, I4]',
     expectedPublicEngineNodeName: 'honda_vtec_i4',
   ),
+  TestEngine(
+    file: File('$engineDir/kohler_ch750.mr'),
+    expectedName: 'Kohler CH750',
+    expectedPublicEngineNodeName: 'kohler_ch750',
+  )
 ];
 
 class TestEngine extends Engine {
