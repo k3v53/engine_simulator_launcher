@@ -34,10 +34,11 @@ class Engine {
   /// The public engine node name of this engine file
   Future<String?> get publicEngineNodeName async {
     final contents = await file.readAsString();
-    final slice1 = contents.substring(0, await nameIndex);
-    final pbIndex = slice1.lastIndexOf('public node');
-    final slice2 = slice1.substring(pbIndex);
-    final match = _publicEngineNodeNameReg.firstMatch(slice2);
+    final sliceBeforeEngineName = contents.substring(0, await nameIndex);
+    final publicNodeIndex = sliceBeforeEngineName.lastIndexOf('public node');
+    final sliceBeforePublicNode =
+        sliceBeforeEngineName.substring(publicNodeIndex);
+    final match = _publicEngineNodeNameReg.firstMatch(sliceBeforePublicNode);
     return match?.group(1);
   }
 }
