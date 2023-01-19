@@ -2,7 +2,7 @@ import 'package:engine_simulator_launcher/home/view/home_page.dart';
 import 'package:engine_simulator_launcher/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:settings_repository/src/settings_repository.dart';
+import 'package:settings_repository/settings_repository.dart';
 
 class App extends StatelessWidget {
   const App({super.key, required this.settingsRepository});
