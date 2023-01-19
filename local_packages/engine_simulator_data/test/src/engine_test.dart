@@ -8,12 +8,25 @@ import 'package:test/test.dart';
 
 void main() {
   for (final e in testEngines) {
-    group('Engine ${e.expectedName}', () {
+    group('Engine ${e.expectedName} Read-Only', () {
       test('can be instantiated', () => expect(e, isNotNull));
-      test('returns file contents', () => expect(e.contents, isNotEmpty));
+      test(
+        'returns file contents',
+        () async => expect(await e.contents, isNotEmpty),
+      );
       test(
         'returns engine name',
         () async => expect(await e.name, e.expectedName),
+      );
+      test(
+        'returns engine name index',
+        () async => expect(
+          await e.nameIndex,
+          (await e.contents).indexOf(
+                (await e.name)!,
+              ) -
+              7,
+        ),
       );
       test('returns file path', () => expect(e.filePath, e.expectedFilePath));
       test(
