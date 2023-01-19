@@ -32,7 +32,7 @@ void main() {
         expect(await launcher.contents, await launcherFile.readAsString());
         expect(
           (await launcher.contents)
-              .contains(testEngines[0].publicEngineNodeName ?? ''),
+              .contains(await testEngines[0].publicEngineNodeName ?? ''),
           isTrue,
         );
       },

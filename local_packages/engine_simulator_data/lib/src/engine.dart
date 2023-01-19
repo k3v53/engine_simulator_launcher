@@ -13,11 +13,11 @@ class Engine {
   File file;
 
   /// The contents of this engine file
-  String get contents => file.readAsStringSync();
+  Future<String> get contents => file.readAsString();
 
   /// Return the name of this engine
-  String? get name {
-    final contents = file.readAsStringSync();
+  Future<String?> get name async {
+    final contents = await file.readAsString();
     final match = _nameReg.firstMatch(contents);
     return match?.group(1);
   }
@@ -26,8 +26,8 @@ class Engine {
   String get filePath => file.path;
 
   /// The public engine node name of this engine file
-  String? get publicEngineNodeName {
-    final contents = file.readAsStringSync();
+  Future<String?> get publicEngineNodeName async {
+    final contents = await file.readAsString();
     final match = _publicEngineNodeNameReg.firstMatch(contents);
     return match?.group(1);
   }

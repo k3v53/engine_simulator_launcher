@@ -13,12 +13,15 @@ void main() {
       test('returns file contents', () => expect(e.contents, isNotEmpty));
       test(
         'returns engine name',
-        () => expect(e.name, e.expectedName),
+        () async => expect(await e.name, e.expectedName),
       );
       test('returns file path', () => expect(e.filePath, e.expectedFilePath));
       test(
         'returns public engine node name',
-        () => expect(e.publicEngineNodeName, e.expectedPublicEngineNodeName),
+        () async => expect(
+          await e.publicEngineNodeName,
+          e.expectedPublicEngineNodeName,
+        ),
       );
     });
   }
