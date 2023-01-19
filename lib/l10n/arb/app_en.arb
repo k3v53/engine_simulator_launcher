@@ -2,10 +2,6 @@
 "@@locale": "en",
 "actualEngine": "Actual Engine",
 "actualTheme": "Actual Theme",
-"counterAppBarTitle": "Counter",
-"@counterAppBarTitle": {
-    "description": "Text shown in the AppBar of the Counter Page"
-},
 "defaultTheme": "Default Theme",
 "didNotFindLauncherBinary": "We didn't find the launcher binary, please go to the settings page to download it or to set it manually.",
 "engineSimulatorLauncher": "Engine Simulator Launcher",

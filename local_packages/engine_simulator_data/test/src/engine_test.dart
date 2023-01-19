@@ -5,24 +5,62 @@ import 'dart:io';
 import 'package:engine_simulator_data/engine_simulator_data.dart';
 import 'package:test/test.dart';
 
-void main() {
-  group('Engine', () {
-    final file = File('test/assets/engine/chev_truck_454.mr');
-    final engine = Engine(file);
 
-    test('can be instantiated', () {
-      expect(engine, isNotNull);
+void main() {
+  for (final e in testEngines) {
+    group('Engine ${e.expectedName}', () {
+      test('can be instantiated', () => expect(e, isNotNull));
+      test('returns file contents', () => expect(e.contents, isNotEmpty));
+      test(
+        'returns engine name',
+        () => expect(e.name, e.expectedName),
+      );
+      test('returns file path', () => expect(e.filePath, e.expectedFilePath));
+      test(
+        'returns public engine node name',
+        () => expect(e.publicEngineNodeName, e.expectedPublicEngineNodeName),
+      );
     });
-    test('returns file contents', () {
-      final contents = engine.contents;
-      expect(contents, isNotEmpty);
-    });
-    test('returns engine name', () {
-      final name = engine.name;
-      expect(name, 'Chev. 454 V8');
-    });
-    test('returns file path', () {
-      expect(engine.filePath, file.path);
-    });
-  });
+  }
 }
+
+// #region Test Engines
+const engineDir = 'test/assets/engine';
+final testEngines = [
+  TestEngine(
+    file: File('$engineDir/chev_truck_454.mr'),
+    expectedName: 'Chev. 454 V8',
+    expectedPublicEngineNodeName: 'chev_truck_454',
+  ),
+  TestEngine(
+    file: File('$engineDir/M52B28.mr'),
+    expectedName: 'BMW M52B28',
+    expectedPublicEngineNodeName: 'M52B28',
+  ),
+  TestEngine(
+    file: File('$engineDir/07_audi_i5.mr'),
+    expectedName: 'Audi 2.3 inline 5',
+    expectedPublicEngineNodeName: 'audi_i5_2_2L',
+  ),
+  TestEngine(
+    file: File('$engineDir/05_honda_vtec.mr'),
+    expectedName: 'Honda B18C5 [VTEC, I4]',
+    expectedPublicEngineNodeName: 'honda_vtec_i4',
+  ),
+];
+
+class TestEngine extends Engine {
+  TestEngine({
+    required File file,
+    required this.expectedName,
+    required this.expectedPublicEngineNodeName,
+  }) : super(file);
+
+  final String expectedName;
+  final String expectedPublicEngineNodeName;
+
+  // Getters
+  String get expectedFilePath => file.path;
+}
+
+// #endregion
