@@ -5,8 +5,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:settings_repository/settings_repository.dart';
 
-part 'home_state.dart';
 part 'home_cubit.freezed.dart';
+part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit({required this.settingsRepository, Process? engineSimulatorProcess})
@@ -46,5 +46,18 @@ class HomeCubit extends Cubit<HomeState> {
     if (result == null) return;
     await startEngineSimulator(path: result);
     await setEngineSimulatorPath(result);
+  }
+
+  void stopEngineSimulator() {
+    state.engineSimulatorProcess!.kill();
+    return emit(state.copyWith(engineSimulatorProcess: null));
+  }
+
+  Future<void> toggleEngineSimulator() async {
+    if (state.engineSimulatorProcess == null) {
+      return startEngineSimulator();
+    } else {
+      return stopEngineSimulator();
+    }
   }
 }

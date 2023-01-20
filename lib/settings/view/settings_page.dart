@@ -2,18 +2,17 @@ import 'package:engine_simulator_launcher/l10n/l10n.dart';
 import 'package:engine_simulator_launcher/settings/cubit/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:settings_repository/settings_repository.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
   static MaterialPageRoute<Widget> get route => MaterialPageRoute<Widget>(
-        builder: (_) => BlocProvider<SettingsCubit>(
-          create: (context) => SettingsCubit(
-            settingsRepository: context.read<SettingsRepository>(),
-          ),
-          child: const SettingsPage(),
+        builder: (_) => const Hero(
+          tag: heroTag,
+          child: SettingsPage(),
         ),
       );
+
+static const heroTag = 'settingsHero';
 
   @override
   Widget build(BuildContext context) {

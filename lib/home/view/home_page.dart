@@ -1,4 +1,6 @@
 import 'package:engine_simulator_launcher/constants.dart';
+import 'package:engine_simulator_launcher/engine/engine.dart';
+import 'package:engine_simulator_launcher/engine/view/engine_page.dart';
 import 'package:engine_simulator_launcher/home/home.dart';
 import 'package:engine_simulator_launcher/l10n/l10n.dart';
 import 'package:engine_simulator_launcher/settings/settings.dart';
@@ -40,16 +42,14 @@ class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Row(
-        children: const [
-          Expanded(child: EngineCard()),
-          Expanded(child: ThemeCard()),
-        ],
-      ),
-    );
-  }
+  Widget build(BuildContext context) => SafeArea(
+        child: Row(
+          children: const [
+            Expanded(child: EngineCard()),
+            Expanded(child: ThemeCard()),
+          ],
+        ),
+      );
 }
 
 class EngineCard extends StatelessWidget {
@@ -58,23 +58,35 @@ class EngineCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              l10n.actualEngine,
-              style: Theme.of(context).textTheme.headline4,
+    return Hero(
+      tag: EnginePage.heroTag,
+      child: Card(
+        child: InkWell(
+          borderRadius: BorderRadius.circular(4),
+          onTap: () => Navigator.push(
+            context,
+            EnginePage.route(
+              context.read<HomeCubit>().state.engineSimulatorPath!,
             ),
-            const Icon(
-              Icons.speed,
-              color: Colors.grey,
-              size: 128,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  l10n.actualEngine,
+                  style: Theme.of(context).textTheme.headline4,
+                ),
+                const Icon(
+                  Icons.speed,
+                  color: Colors.grey,
+                  size: 128,
+                ),
+                const Text('I will code the "actual engine name" later...'),
+              ],
             ),
-            const Text('Ferrari l386'),
-          ],
+          ),
         ),
       ),
     );
@@ -83,27 +95,36 @@ class EngineCard extends StatelessWidget {
 
 class ThemeCard extends StatelessWidget {
   const ThemeCard({super.key});
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
+    void showComingSoonSnackBar() {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(l10n.comingSoon)));
+    }
+
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              l10n.actualTheme,
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            const Icon(
-              Icons.style,
-              color: Colors.grey,
-              size: 128,
-            ),
-            Text(l10n.defaultTheme),
-          ],
+      child: InkWell(
+        borderRadius: BorderRadius.circular(4),
+        onTap: showComingSoonSnackBar,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                l10n.actualTheme,
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              const Icon(
+                Icons.style,
+                color: Colors.grey,
+                size: 128,
+              ),
+              Text(l10n.defaultTheme),
+            ],
+          ),
         ),
       ),
     );
@@ -155,8 +176,8 @@ class HomeBottomBar extends StatelessWidget {
         );
         return;
       }
-
-      context.read<HomeCubit>().startEngineSimulator();
+      
+      context.read<HomeCubit>().toggleEngineSimulator();
     }
 
     return Container(
@@ -171,10 +192,13 @@ class HomeBottomBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            child: ElevatedButton.icon(
-              onPressed: () => Navigator.push(context, SettingsPage.route),
-              icon: const Icon(Icons.settings),
-              label: Text(l10n.settings),
+            child: Hero(
+              tag: SettingsPage.heroTag,
+              child: ElevatedButton.icon(
+                onPressed: () => Navigator.push(context, SettingsPage.route),
+                icon: const Icon(Icons.settings),
+                label: Text(l10n.settings),
+              ),
             ),
           ),
           const SizedBox(width: 8),

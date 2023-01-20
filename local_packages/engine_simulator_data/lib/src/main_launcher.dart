@@ -14,18 +14,24 @@ class Mainlauncher {
   Future<String> get contents => file.readAsString();
 
   /// Generates a string with the desired settings to set into the main.mr file
-  String buildMainMRFile({
+  Future<String> buildMainMRFile({
     required Engine engine,
     required String? themeLocation,
-  }) {
+  }) async {
     return [
+      '// THIS FILE WAS GENERATED WITH ENGINE_SIMULATOR_LAUNCHER, DO NOT MODIFY BY HAND!',
+      '// THE LAUNCHER WILL RECREATE THIS FILE EVERY TIME THE USER MAKES A CHANGE',
       'import "engine_sim.mr"',
-      if (themeLocation != null) 'import "$themeLocation"',
+
+      if (themeLocation != null)
+        'import "$themeLocation"'
+      else
+        'import "themes/default.mr"',
       'import "${engine.filePath}"',
       '',
       if (themeLocation == null) 'use_default_theme()',
       'main()',
-      'set_engine(${engine.publicEngineNodeName})'
+      'set_engine(${await engine.publicEngineNodeName}())'
     ].join('\n');
   }
 
@@ -35,9 +41,10 @@ class Mainlauncher {
   /// Generates and writes these settings into this main.mr file
   Future<File> setSettings({
     required Engine engine,
-    required String? themeLocation,
-  }) =>
+    String? themeLocation,
+  }) async =>
       setFileContents(
+        await
         buildMainMRFile(
           engine: engine,
           themeLocation: themeLocation,

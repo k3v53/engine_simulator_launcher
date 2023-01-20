@@ -1,4 +1,4 @@
-/// A Very Good Project created by Very Good CLI.
+/// A Simple way to manipulate the assets of Engine Simulator.
 library engine_simulator_data;
 
 export 'src/engine.dart';
