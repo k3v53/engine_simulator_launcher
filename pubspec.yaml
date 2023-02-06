@@ -8,7 +8,7 @@ environment:
   flutter: 3.3.8
 
 dependencies:
-  bloc: ^8.1.0
+  bloc: ^8.1.1
   engine_simulator_data:
     path: local_packages/engine_simulator_data
   settings_repository:
