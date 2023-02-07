@@ -15,7 +15,7 @@ dependencies:
       path: local_packages/settings_repository
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.1
+  flutter_bloc: ^8.1.2
   flutter_localizations:
     sdk: flutter
   freezed_annotation: ^2.2.0
