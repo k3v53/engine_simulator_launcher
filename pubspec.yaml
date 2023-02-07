@@ -23,7 +23,7 @@ dependencies:
   json_annotation: ^4.7.0
   shared_preferences: ^2.0.17
   file_picker: ^5.2.5
-  url_launcher: ^6.1.8
+  url_launcher: ^6.1.9
 
 dev_dependencies:
   bloc_test: ^9.1.0
